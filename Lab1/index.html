@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="doT.js"></script>
+    <title>Lab 1</title>
+</head>
+
+<body>
+    <input type="search" name="citysearch" id="_citysearch">
+    <button type="submit" id="searchbutton" class="ab" onclick="action()">Search</button>
+    <div id="City" class="City"></div>
+    <div id="WeatherInfo" class="Weather"></div>
+    <script>
+
+        var data = {}
+        var button = document.getElementById("searchbutton")
+
+        document.getElementById("_citysearch").addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                action()
+            }
+        })
+
+        function render(htmlElement) {
+
+            if (data["cod"] === 200) {
+                var template = "{{~it.weather :value:index}}<li>{{=value.parametr}} - {{=value.value}}</li>{{~}}"
+                var json = {
+                    "weather": [
+                        { "parametr": "weather", "value": data["weather"][0]["description"] },
+                        { "parametr": "temperature (Celsius)", "value": data["main"]["temp"] },
+                        { "parametr": "humidity (%)", "value": data["main"]["humidity"] },
+                        { "parametr": "pressure (hPa)", "value": data["main"]["pressure"] },
+                        { "parametr": "wind speed (meter/sec)", "value": data["wind"]["speed"] }
+                    ]
+                }
+                var tempFn = doT.template(template)
+                htmlElement.innerHTML = tempFn(json)
+            }
+
+            data = null
+        }
+
+
+        function getweather(city) {
+            var request = new XMLHttpRequest()
+            request.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q='.concat(city, "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric"), true)
+            request.onload = function () {
+                data = JSON.parse(this.response)
+                console.log(data)
+                if (data["cod"] === 200) {
+                    console.log("yes")
+                    var target = document.getElementById("WeatherInfo")
+                    console.log(target)
+                    document.getElementById("City").textContent = data["name"]
+                    render(target)
+                }
+                else {
+                    console.log("no")
+                    document.getElementById("City").textContent = data["message"]
+                    document.getElementById("WeatherInfo").innerHTML = ""
+                }
+
+
+            }
+            request.send()
+        }
+
+        function action() {
+            var city = document.getElementById("_citysearch").value;
+            console.log(city)
+            getweather(city)
+
+        }
+    </script>
+</body>
+
+</html>

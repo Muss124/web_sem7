@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+body {
+  background: #9781af;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+li {
+  margin: 10px;
+  color: darkred;
+  font-size: 20px;
+  text-decoration: none;
+  list-style-type: none;
+  font-style: italic;
+  font-size: 18px;
+}
+input {
+  padding: 10px 32px;
+  border: 0;
+  margin: 10px;
+}
+.Weather {
+  margin: 10px;
+}
+.City {
+  margin: 10px;
+  color: darkred;
+  font-size: 20px;
+}
+.ab {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border: none;
+  color: black;
+  background-color: orange;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 10px;
+  margin-left: 0px;
+}
+.ab:hover {
+  background-color: black;
+  color: orange;
+}

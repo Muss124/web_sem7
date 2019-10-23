@@ -1,0 +1,64 @@
+@background-color : #9781af;
+@text-color       : darkred;
+@button-color     : black;
+@button-font-color: orange;
+@margin           : 10px;
+@t                : 0.4s;
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background : @background-color;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+li {
+    .City;
+    text-decoration: none;
+    list-style-type: none;
+    font-style     : italic;
+    font-size      : 18px;
+}
+
+input {
+    padding: 10px 32px;
+    border : 0;
+    margin : @margin;
+}
+
+.Weather {
+    margin: @margin;
+}
+
+.City {
+    .Weather;
+    color    : @text-color;
+    font-size: 20px;
+}
+
+.ab {
+    -webkit-transition-duration: @t;
+    transition-duration        : @t;
+    border                     : none;
+    color                      : @button-color;
+    background-color           : @button-font-color;
+    padding                    : 10px 32px;
+    text-align                 : center;
+    text-decoration            : none;
+    display                    : inline-block;
+    font-size                  : 13px;
+    margin                     : @margin;
+    margin-left                : 0px;
+}
+
+.ab:hover {
+    background-color: @button-color;
+    color           : @button-font-color;
+}
