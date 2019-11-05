@@ -34,9 +34,9 @@ function getweather(city) {
     request.send()
 }
 
-function action() {
+function formSubmit(event) {
+    event.preventDefault()
     var city = document.getElementById("_citysearch").value;
     //console.log(city)
-    getweather(city)
-
+    getweather(city)    
 }
