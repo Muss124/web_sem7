@@ -23,13 +23,13 @@ function render(data) {
     }
 }
 
-function getweather(city) {
+function getweather(city, callback) {
     var request = new XMLHttpRequest()
     request.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q='.concat(city, "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric"), true)
     request.onload = function () {
-        data = JSON.parse(this.response)
+        var data = JSON.parse(this.response)
         //console.log(data)
-        render(data)
+        callback(data)
     }
     request.send()
 }
@@ -38,5 +38,5 @@ function formSubmit(event) {
     event.preventDefault()
     var city = document.getElementById("_citysearch").value;
     //console.log(city)
-    getweather(city)    
+    getweather(city, render)    
 }
