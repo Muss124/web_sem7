@@ -36,7 +36,6 @@ function getweather(city, callback) {
 
 function formSubmit(event) {
     event.preventDefault()
-    var city = document.getElementById("_citysearch").value;
-    //console.log(city)
+    var city = event["srcElement"][0].value;
     getweather(city, render)    
 }
