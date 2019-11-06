@@ -6,7 +6,7 @@ you can get it by npm
 
 
 after you can use command to compile LESS-files to CSS
-> lessc *style.less* */css/style.css*
+> lessc *style.less* *css/style.css*
 
 
 alternatively you can install watcher that would recompile LESS-files to CSS in live

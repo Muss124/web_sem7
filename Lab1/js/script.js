@@ -23,19 +23,24 @@ function render(data) {
     }
 }
 
-function getweather(city, callback) {
-    var request = new XMLHttpRequest()
-    request.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q='.concat(city, "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric"), true)
-    request.onload = function () {
-        var data = JSON.parse(this.response)
-        //console.log(data)
-        callback(data)
-    }
-    request.send()
+function getWeather(city) {
+    return new Promise(function (resolve, reject) {
+        var request = new XMLHttpRequest()
+        request.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q='.concat(city, "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric"), true)
+        request.onload = function () {
+            var data = JSON.parse(this.response)
+            resolve(data)
+        } 
+        request.onerror = () => reject("Load error")
+        request.send()
+    })
+
 }
 
 function formSubmit(event) {
     event.preventDefault()
-    var city = event["srcElement"][0].value;
-    getweather(city, render)    
+    var city = event["srcElement"][0].value
+    getWeather(city).then(res => render(res), err => alert(err))
+    
 }
+
