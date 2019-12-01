@@ -1,50 +1,55 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
 }
 
-ol, ul {
-  padding-left: 30px;
+.WeatherData {
+  background-color: blanchedalmond;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.FavoriteItem {
+  width     : 45%;
+  text-align: justify;
 }
 
-.status {
-  margin-bottom: 10px;
+.FavoriteContainer {
+  width          : 99%;
+  display        : flex;
+  flex-wrap      : wrap;
+  flex-direction : row;
+  justify-content: space-around;
 }
 
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
+.WeatherTop {
+  display        : flex;
+  justify-content: flex-start;
+}
+
+.WeatherMainEl {
+  display         : flex;
+  justify-content : space-between;
+  background-color: #999;
+  margin          : 5px;
+}
+
+.WeatherParam {
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
 }
 
-.square:focus {
-  outline: none;
+.TopCityWeather {
+  width       : 90%;
+  margin-left : auto;
+  margin-right: auto;
 }
 
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
-.game {
+.TopCityWeather .WeatherData {
   display: flex;
-  flex-direction: row;
 }
 
-.game-info {
-  margin-left: 20px;
+.TopCityWeather .WeatherMain {
+  width: 50%;
+
+}
+
+.TopCityWeather .WeatherTop {
+  width: 50%
 }

@@ -63,7 +63,7 @@ class MainWeather extends React.Component {
 			return (
 				<div>
 					<button type="button" class="btn btn-warning" onClick={() => { this.setState({ loading: true }); this.checkGeo() }}>Refresh geolocation</button>
-					<div>
+					<div class="TopCityWeather">
 						<WeatherData value={value} />
 					</div>
 				</div>
@@ -106,7 +106,7 @@ class Favorite extends React.Component {
 		return (
 			<div>
 				<FavoriteSearch handler={this.handler} />
-				<div>
+				<div class="FavoriteContainer">
 					{
 						this.state.data.map((favCity, i = 0) => {
 							i++;
@@ -124,9 +124,9 @@ class FavoriteItem extends React.Component {
 		if (this.props.value === null) { return <div></div>; }
 		else {
 			return (
-				<div>
+				<div class="FavoriteItem">
 					<button type="submit" class="btn btn-warning" onClick={() => {
-						console.log("REMOVE"); 
+						console.log("REMOVE");
 						store.dispatch({ type: "FAVORITE_REMOVE", payload: this.props.value["name"] })
 						this.props.handler();
 					}} >&#10006;</button>
@@ -143,18 +143,38 @@ class WeatherData extends React.Component {
 		console.log("here");
 		console.log(WeatherData)
 		return (
-			<div>
-				<h2>Weather in {WeatherData["name"]}</h2>
-				<div>
+			<div class="WeatherData">
+				<div class="WeatherTop">
+					<h2>{WeatherData["name"]}</h2>
 					<img src={"http://openweathermap.org/img/wn/" + WeatherData["weather"][0]["icon"] + ".png"} alt=""></img>
 					<h3>{WeatherData["main"]["temp"]} &#8451;</h3>
 				</div>
-				<li>Weather {WeatherData["weather"][0]["description"]}</li>
-				<li>Humidity (%) {WeatherData["main"]["humidity"]}</li>
-				<li>Pressure (hPa) {WeatherData["main"]["pressure"]}</li>
-				<li>Wind speed (meter/sec) {WeatherData["wind"]["speed"]}</li>
-				<li>Longitude {WeatherData["coord"]["lon"]}</li>
-				<li>Latitude {WeatherData["coord"]["lat"]}</li>
+				<div class="WeatherMain">
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Weather</div>
+						<div class="WeatherValue">{WeatherData["weather"][0]["description"]}</div>
+					</div>
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Humidity (%)</div>
+						<div class="WeatherValue">{WeatherData["main"]["humidity"]}</div>
+					</div>
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Pressure (hPa)</div>
+						<div class="WeatherValue">{WeatherData["main"]["pressure"]}</div>
+					</div>
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Wind speed (meter/sec)</div>
+						<div class="WeatherValue">{WeatherData["wind"]["speed"]}</div>
+					</div>
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Longitude </div>
+						<div class="WeatherValue">{WeatherData["coord"]["lon"]}</div>
+					</div>
+					<div class="WeatherMainEl">
+						<div class="WeatherParam">Latitude</div>
+						<div class="WeatherValue">{WeatherData["coord"]["lat"]}</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
