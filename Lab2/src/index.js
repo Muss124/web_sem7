@@ -1,8 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
+// Redux part
+import { createStore } from 'redux';
 
+function favoriteStore(state = [], action) {
+	var stateData = state;
+	if (action.type === "FAVORITE_LOAD") {
+		var localData = JSON.parse(window.localStorage.getItem('favorite'));
+		if (localData === null) {
+			return [];
+		}
+		return localData;
+	}
+	if (action.type === "FAVORITE_ADD") {
+		if (!containsObject(action.payload, stateData)) {
+			stateData.push(action.payload);
+		}
+		else {
+			alert(action.payload["name"] + " is already added to favorite!")
+		}
+		window.localStorage.setItem("favorite", JSON.stringify(stateData));
+		return stateData;
+	}
+	if (action.type === "FAVORITE_REMOVE") {
+		return stateData.filter(city => city["name"] !== action.payload);
+	}
+}
+const store = createStore(favoriteStore)
+store.subscribe(() => {
+	console.log('subscribe', store.getState())
+})
+
+
+// React part
 class MainWeather extends React.Component {
 	constructor(props) {
 		super(props);
@@ -61,11 +93,13 @@ class Favorite extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handler = this.handler.bind(this);
-		var newData = JSON.parse(window.localStorage.getItem('favorite'));
+		//var newData = JSON.parse(window.localStorage.getItem('favorite'));
+		store.dispatch({ type: "FAVORITE_LOAD" });
+		var newData = store.getState();
 		this.state = { data: newData };
 	}
 	handler() {
-		var newData = JSON.parse(window.localStorage.getItem('favorite'));
+		var newData = store.getState();
 		this.setState({ data: newData });
 	}
 	render() {
@@ -76,7 +110,7 @@ class Favorite extends React.Component {
 					{
 						this.state.data.map((favCity, i = 0) => {
 							i++;
-							return ([<FavoriteItem value={favCity} />])
+							return ([<FavoriteItem value={favCity} handler={this.handler} />])
 						}
 						)
 					}
@@ -91,6 +125,11 @@ class FavoriteItem extends React.Component {
 		else {
 			return (
 				<div>
+					<button type="submit" class="btn btn-warning" onClick={() => {
+						console.log("REMOVE"); 
+						store.dispatch({ type: "FAVORITE_REMOVE", payload: this.props.value["name"] })
+						this.props.handler();
+					}} >&#10006;</button>
 					<WeatherData value={this.props.value} />
 				</div>
 			);
@@ -138,24 +177,23 @@ class FavoriteSearch extends React.Component {
 	}
 
 	async addGeo(value) {
-		var data = JSON.parse(window.localStorage.getItem('favorite'));
-		if (data === null) {
-			data = [];
-		}
 		var result = null;
 		await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + value + '&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric')
 			.then((res) => res.json()).then((res) => { result = res });
-		console.log("recevied")
+		console.log("recevied");
 		console.log(result);
 		if (result != null && result["cod"] === 200) {
-			data.push(result);
-			window.localStorage.setItem("favorite", JSON.stringify(data));
+			store.dispatch({ type: "FAVORITE_ADD", payload: result })
+			//data.push(result);
+			//window.localStorage.setItem("favorite", JSON.stringify(data));
 			this.props.handler();
+			var data = store.getState();
+			this.setState({ loading: false, success: true, data: data });
 		} else {
 			alert("City doesn't founded(")
 		}
-		window.localStorage.setItem('favorite', JSON.stringify(data));
-		//this.setState({ loading: false, success: true, data: data });
+		//window.localStorage.setItem('favorite', JSON.stringify(data));
+
 	}
 	render() {
 		return (
@@ -190,3 +228,14 @@ ReactDOM.render(
 	<App />,
 	document.getElementById('root')
 );
+
+// ========================================
+function containsObject(obj, list) {
+	var i;
+	for (i = 0; i < list.length; i++) {
+		if (list[i]["name"] === obj["name"]) {
+			return true;
+		}
+	}
+	return false;
+}
