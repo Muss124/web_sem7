@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import { reducer } from "./Reducers/reducer.js";
 import thunk from "redux-thunk";
-//import promise from "redux-promise-middleware";
 
 const myMiddle = (store) => (next) => (action) => {
     console.log("Logged action", action);
@@ -10,7 +9,7 @@ const myMiddle = (store) => (next) => (action) => {
 
 export default createStore(
     reducer,
-    JSON.parse(window.localStorage.getItem('favorite')),
+    JSON.parse(window.localStorage.getItem('favorite')) != null ? JSON.parse(window.localStorage.getItem('favorite')): [],
     applyMiddleware(myMiddle, thunk)
 );
 

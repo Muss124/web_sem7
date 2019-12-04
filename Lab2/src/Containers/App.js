@@ -8,11 +8,12 @@ import Favorite from "../Components/Favorite.js"
 export const App = (props) => {
   return (
     <div>
-      <div>
-        <MainWeather />
+      <div class="app">
+        <h2>Weather here</h2>
+        <MainWeather name="MainWeather" />
       </div>
       <Provider store={store}>
-        <Favorite />
+        <Favorite name="Favorite" />
       </Provider>
     </div>
   );

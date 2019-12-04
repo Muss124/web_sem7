@@ -27,8 +27,8 @@ export class MainWeather extends React.Component {
 			var value = this.state.data;
 			console.log(value);
 			return (
-				<div>
-					<button type="button" class="btn btn-warning" onClick={() => { this.setState({ loading: true }); this.checkGeo() }}>Refresh geolocation</button>
+				<div class="UpperWeather">
+					<button type="button" class="btn btn-secondary" onClick={() => { this.setState({ loading: true }); this.checkGeo() }}>Refresh geolocation</button>
 					<div class="TopCityWeather">
 						<WeatherData value={value} />
 					</div>

@@ -8,17 +8,18 @@ class Favorite extends React.Component {
         return (
             <div>
                 <FavoriteSearch />
-                {
-                    this.props.data.map((favCity, i = 0) => {
-                        i++;
-                        return ([
-                            <div class="FavoriteContainer" key={i}>
-                                <FavoriteItem value={favCity}  />
-                            </div>
-                        ])
-                    })
-                }
+                <div class="FavoriteContainer" >
+                    {
+                        this.props.data.map((favCity, i = 0) => {
+                            i++;
+                            return ([
 
+                                <FavoriteItem value={favCity} />
+
+                            ])
+                        })
+                    }
+                </div>
             </div>
         )
     }

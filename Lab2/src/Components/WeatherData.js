@@ -11,8 +11,8 @@ export class WeatherData extends React.Component {
 				<div class="WeatherTop">
 					<h2>{WeatherData["name"]}</h2>
 					<img src={"http://openweathermap.org/img/wn/" + WeatherData["weather"][0]["icon"] + ".png"} alt=""></img>
-					<h3>{WeatherData["main"]["temp"]} &#8451;</h3>
-					<button type="submit" class="btn btn-warning" onClick={() => {
+					<h1>{WeatherData["main"]["temp"]} &#8451;</h1>
+					<button type="submit" class="btn btn-secondary" onClick={() => {
 						console.log("REMOVE");
 						store.dispatch({ type: "FAVORITE_REMOVE", payload: WeatherData["name"] });
 					}} >&#10006;</button>
