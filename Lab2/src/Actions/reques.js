@@ -25,7 +25,7 @@ export function test() {
     };
 }
 export function itemsFetchData(data) {
-    return function(dispatch){
+    return function (dispatch) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${data}&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric`)
             .then((response) => {
                 return response;
@@ -36,6 +36,11 @@ export function itemsFetchData(data) {
 
 }
 /*
+.then((response) => {
+                return response;
+            })
+
+
 export function fetchCityData(data) {
     return function (dispatch) {
         //dispatch()

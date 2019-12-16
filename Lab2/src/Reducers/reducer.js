@@ -46,7 +46,12 @@ export function reducer(state, action) {
             stateData.push(action.payload);
             break;
         case "FAVORITE_DATA_RESOLVE":
-            if (containsObject(action.payload, stateData)) {
+                console.log(action.payload.city);
+            if (action.payload.data["cod"] === "404") {
+                console.log(action.payload);
+                alert(action.payload.data["message"]);
+                stateData = removeLoadingObject(action.payload, stateData);
+            } else if (containsObject(action.payload, stateData)) {
                 alert("City already added to Favorite");
                 stateData = removeLoadingObject(action.payload, stateData);
             }
