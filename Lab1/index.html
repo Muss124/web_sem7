@@ -13,7 +13,7 @@
     <script src="./node_modules/sinon/pkg/sinnon.js"></script>
     <script src="./node_modules/chai/chai.js"></script>
     <script>mocha.setup('bdd');</script>
-    <script>var assert = chai.assert;</script>
+
     <script type="text/javascript" src="js/doT.js"></script>
     <script src="js/script.js"></script>
 
@@ -28,39 +28,9 @@
     </form>
     <div id="City" class="City"></div>
     <div id="WeatherInfo" class="Weather"></div>
-
-    <div id="mocha"></div>
+    
     <script src="./test/tests.js"></script>
-    <script>
-        /*
-        var mochaAsync = (fn) => {
-            return async (done) => {
-                try {
-                    await fn();
-                    done();
-                } catch (err) {
-                    done(err);
-                }
-            };
-        };
-        
-        assert = chai.assert;
-        
-        describe("Check form input", async function () {
-
-            it("Empty", mochaAsync(async () => {
-                document.getElementById("_citysearch").value = "";
-                var x = await document.getElementById("searchbutton").click();
-                console.log("test");
-                assert.equal(document.getElementById('City').textContent, "Nothing to geocode");
-                
-            }));
-        });
-        */
-        //var assert = require('chai').assert;
-        
-        mocha.run();
-    </script>
+    <script>mocha.run();</script>
 </body>
 
 </html>

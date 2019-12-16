@@ -22,3 +22,6 @@ here we include config file *less-watch-compiler.config.json* and to use less-wa
 
 ## **_doT js_**
 already included in doT.js file
+
+## **_Testing_**
+for testing open node.js promt line and run "npm test" while in project directory
