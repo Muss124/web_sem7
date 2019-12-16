@@ -30,17 +30,17 @@ function getWeather(city) {
         request.onload = function () {
             var data = JSON.parse(this.response)
             resolve(data)
-        } 
+        }
         request.onerror = () => reject("Load error")
         request.send()
     })
 
 }
 
-function formSubmit(event) {
+async function formSubmit(event) {
+    //console.log(event)
     event.preventDefault()
     var city = event["srcElement"][0].value
     getWeather(city).then(res => render(res), err => alert(err))
-    
 }
 

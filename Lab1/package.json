@@ -1,0 +1,14 @@
+{
+  "name": "lab1",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha-headless-chrome -f ./index.html"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "mocha-headless-chrome": "^2.0.3",
+    "sinon": "^7.5.0"
+  },
+  "author": "Maxim Ivliev <muss123balakovo@gmail.com>"
+}
