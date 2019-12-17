@@ -1,5 +1,5 @@
 import React from "react"
-import {WeatherData} from "./WeatherData.js"
+import { WeatherData } from "./WeatherData.js"
 
 
 export class MainWeather extends React.Component {
@@ -13,7 +13,12 @@ export class MainWeather extends React.Component {
 		this.checkGeo();
 	}
 	checkGeo() {
-		navigator.geolocation.getCurrentPosition(this.goodWeather, this.badWeather)
+		if (navigator.geolocation === undefined) {
+			this.badWeather();
+		}
+		else {
+			navigator.geolocation.getCurrentPosition(this.goodWeather, this.badWeather)
+		}
 	}
 	render() {
 		if (this.state.loading) {

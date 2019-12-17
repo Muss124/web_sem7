@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing render FavoriteSearch Correct render 1`] = `
+<div
+  class="searchform"
+>
+  <div>
+    <h1>
+      Favorite
+    </h1>
+  </div>
+  <div
+    class="searchformInside"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        type="search"
+        value=""
+      />
+      <button
+        class="btn btn-secondary btn-circle"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+</div>
+`;

@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing render WeatherData Correct input 1`] = `
+<div
+  class="WeatherData"
+>
+  <div
+    class="WeatherTop"
+  >
+    <h2>
+      Moscow
+    </h2>
+    <img
+      alt=""
+      src="http://openweathermap.org/img/wn/10n.png"
+    />
+    <h1>
+      1.45
+       ℃
+    </h1>
+    <button
+      class="btn btn-secondary"
+      onClick={[Function]}
+      type="submit"
+    >
+      ✖
+    </button>
+  </div>
+  <div
+    class="WeatherMain"
+  >
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Weather
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        heavy intensity rain
+      </div>
+    </div>
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Humidity (%)
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        100
+      </div>
+    </div>
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Pressure (hPa)
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        1012
+      </div>
+    </div>
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Wind speed (meter/sec)
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        3
+      </div>
+    </div>
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Longitude 
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        37.62
+      </div>
+    </div>
+    <div
+      class="WeatherMainEl"
+    >
+      <div
+        class="WeatherParam"
+      >
+        Latitude
+      </div>
+      <div
+        class="WeatherValue"
+      >
+        55.75
+      </div>
+    </div>
+  </div>
+</div>
+`;

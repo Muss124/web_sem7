@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing render App Correct render 1`] = `
+<div>
+  <div
+    class="app"
+  >
+    <h2>
+      Weather here
+    </h2>
+    <MainWeather
+      name="MainWeather"
+    />
+  </div>
+  <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <Connect(Favorite)
+      name="Favorite"
+    />
+  </Provider>
+</div>
+`;
