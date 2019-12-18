@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing render Favorite Render from empty storage 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Favorite
+    data={Object {}}
+    setName={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    value={Array []}
+  />
+</ContextProvider>
+`;
+
+exports[`Testing render Favorite Render from empty with both loading and loaded element 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Favorite
+    data={Object {}}
+    setName={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    value={
+      Array [
+        Object {
+          "city": "Kiev",
+          "data": Object {
+            "base": "stations",
+            "clouds": Object {
+              "all": 30,
+            },
+            "cod": 200,
+            "coord": Object {
+              "lat": 50.43,
+              "lon": 30.52,
+            },
+            "dt": 1576604944,
+            "id": 703448,
+            "main": Object {
+              "feels_like": 2.93,
+              "humidity": 87,
+              "pressure": 1017,
+              "temp": 6.29,
+              "temp_max": 7.78,
+              "temp_min": 4,
+            },
+            "name": "Kiev",
+            "sys": Object {
+              "country": "UA",
+              "id": 8903,
+              "sunrise": 1576561989,
+              "sunset": 1576590872,
+              "type": 1,
+            },
+            "timezone": 7200,
+            "visibility": 10000,
+            "weather": Array [
+              Object {
+                "description": "scattered clouds",
+                "icon": "03n",
+                "id": 802,
+                "main": "Clouds",
+              },
+            ],
+            "wind": Object {
+              "deg": 230,
+              "speed": 3,
+            },
+          },
+          "loading": false,
+        },
+        Object {
+          "city": "TEST LOADING CITY",
+          "data": Object {},
+          "loading": true,
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`Testing render Favorite Render from empty with loading element 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Favorite
+    data={Object {}}
+    setName={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    value={
+      Array [
+        Object {
+          "city": "TEST LOADING CITY",
+          "data": Object {},
+          "loading": true,
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`Testing render Favorite Render from with loaded element 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Favorite
+    data={Object {}}
+    setName={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    value={
+      Array [
+        Object {
+          "city": "Kiev",
+          "data": Object {
+            "base": "stations",
+            "clouds": Object {
+              "all": 30,
+            },
+            "cod": 200,
+            "coord": Object {
+              "lat": 50.43,
+              "lon": 30.52,
+            },
+            "dt": 1576604944,
+            "id": 703448,
+            "main": Object {
+              "feels_like": 2.93,
+              "humidity": 87,
+              "pressure": 1017,
+              "temp": 6.29,
+              "temp_max": 7.78,
+              "temp_min": 4,
+            },
+            "name": "Kiev",
+            "sys": Object {
+              "country": "UA",
+              "id": 8903,
+              "sunrise": 1576561989,
+              "sunset": 1576590872,
+              "type": 1,
+            },
+            "timezone": 7200,
+            "visibility": 10000,
+            "weather": Array [
+              Object {
+                "description": "scattered clouds",
+                "icon": "03n",
+                "id": 802,
+                "main": "Clouds",
+              },
+            ],
+            "wind": Object {
+              "deg": 230,
+              "speed": 3,
+            },
+          },
+          "loading": false,
+        },
+      ]
+    }
+  />
+</ContextProvider>
+`;

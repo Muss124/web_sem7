@@ -1,0 +1,117 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+}
+
+.TopCityWeather .WeatherData .WeatherTop button.btn {
+  display: none;
+}
+
+.FavoriteItem {
+  width     : 45%;
+  text-align: justify;
+}
+
+.FavoriteContainer {
+  width          : 99%;
+  display        : flex;
+  flex-wrap      : wrap;
+  flex-direction : row;
+  justify-content: space-around;
+}
+
+.WeatherTop {
+  display        : flex;
+  justify-content: flex-start;
+}
+
+.WeatherMainEl {
+  display         : flex;
+  justify-content : space-between;
+  background-color: #999;
+  margin          : 5px;
+  padding         : 5px;
+}
+
+.WeatherParam {
+  font-weight: bold;
+}
+
+.WeatherTop {
+  display: inline-block;
+}
+
+.TopCityWeather {
+  width       : 90%;
+  margin-left : auto;
+  margin-right: auto;
+
+}
+
+.TopCityWeather .WeatherData {
+  display: flex;
+}
+
+.TopCityWeather .WeatherMain {
+  width: 50%;
+}
+
+.TopCityWeather .WeatherTop {
+  width  : 50%;
+  padding: 10px;
+
+}
+
+.FavoriteItem .WeatherTop {
+  padding        : 15px;
+  display        : flex;
+  justify-content: space-between;
+}
+
+.UpperWeather button.btn {
+  display      : block;
+  margin       : auto;
+  margin-bottom: 5px;
+}
+
+.TopCityWeather .WeatherTop img {
+  width    : 30%;
+  text-align: left;
+  object-fit: contain; 
+}
+
+.TopCityWeather .WeatherTop h2 {
+  width    : 100%;
+  font-size: 40px;
+}
+
+.TopCityWeather .WeatherData .WeatherTop h1 {
+  width          : 80%;
+  text-align: right;
+  font-size: 50px;
+}
+
+.searchform {
+  display        : flex;
+  justify-content: space-between;
+  margin-left    : auto;
+  margin-right   : auto;
+  width          : 95%;
+}
+
+form button.btn {
+  font-size: 13px;
+}
+
+.searchformInside {
+  margin-top   : auto;
+  margin-bottom: auto;
+}
+
+.app h2 {
+  margin    : auto;
+  margin-top: 15px;
+}
+.WeatherMain{
+  margin-top:auto;
+  margin-botton:auto;
+}
