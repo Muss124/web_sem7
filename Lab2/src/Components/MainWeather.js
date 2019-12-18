@@ -55,7 +55,7 @@ export class MainWeather extends React.Component {
 	getWeather = async (latitude, longitude) => {
 		var data = null;
 		await fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric')
-			.then((res) => res.json()).then((res) => { data = res });
+			.then((res) => res.json()).then((res) => { data = res }).catch((err) => {throw err;});
 		this.setState({ loading: false, success: true, data: data });
 	}
 }

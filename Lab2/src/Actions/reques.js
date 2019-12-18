@@ -32,6 +32,8 @@ export function itemsFetchData(data) {
             })
             .then((response) => response.json())
             .then((response) => dispatch(loaded(response, data)))
+            .catch((err) => { throw err;})
+
     };
 
 }
