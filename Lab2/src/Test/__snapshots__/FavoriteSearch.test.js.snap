@@ -2,7 +2,7 @@
 
 exports[`Testing render FavoriteSearch Correct render 1`] = `
 <div
-  class="searchform"
+  className="searchform"
 >
   <div>
     <h1>
@@ -10,7 +10,7 @@ exports[`Testing render FavoriteSearch Correct render 1`] = `
     </h1>
   </div>
   <div
-    class="searchformInside"
+    className="searchformInside"
   >
     <form
       onSubmit={[Function]}
@@ -21,12 +21,18 @@ exports[`Testing render FavoriteSearch Correct render 1`] = `
         value=""
       />
       <button
-        class="btn btn-secondary btn-circle"
+        className="btn btn-secondary btn-circle"
         type="submit"
       >
         Add
       </button>
     </form>
+    <button
+      className="btn btn-secondary"
+      onClick={[Function]}
+    >
+      ↺
+    </button>
   </div>
 </div>
 `;

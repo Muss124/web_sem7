@@ -3,7 +3,7 @@
 exports[`Testing render App Correct render 1`] = `
 <div>
   <div
-    class="app"
+    className="app"
   >
     <h2>
       Weather here

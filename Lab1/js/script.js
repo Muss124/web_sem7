@@ -38,7 +38,6 @@ function getWeather(city) {
 }
 
 async function formSubmit(event) {
-    //console.log(event)
     event.preventDefault()
     var city = event["srcElement"][0].value
     getWeather(city).then(res => render(res), err => alert(err))
