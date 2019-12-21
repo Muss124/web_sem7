@@ -1,0 +1,23 @@
+.searchform {
+    display        : flex;
+    justify-content: space-between;
+    margin-left    : auto;
+    margin-right   : auto;
+    width          : 95%;
+}
+
+.searchformInside {
+    margin-top     : auto;
+    margin-bottom  : auto;
+    display        : flex;
+    justify-content: right;
+    margin-right   : 15px;
+}
+
+.searchformInside button.btn {
+    font-size: 13px;
+}
+
+form button.btn {
+    font-size: 13px;
+}

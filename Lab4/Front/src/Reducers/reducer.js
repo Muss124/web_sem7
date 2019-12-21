@@ -1,14 +1,59 @@
+import { json } from "body-parser";
+
 export function reducer(state, action) {
     var stateData = [...state];
     switch (action.type) {
+
+        case "FAVORITE_UPDATE":
+            stateData = action.payload;
+            break;
+        case "ERROR_LOAD":
+            alert("Load error");
+            stateData = removeLoadingObject(action.payload, stateData);
+            break;
         case "FAVORITE_ADD":
             stateData.push(action.payload);
             break;
+        case "FAVORITE_ADD_OK":
+            //тут вся обработка реза, сюда и с 404 приходит
+            if (action.payload.cod === "404") {
+                alert("City " + action.city + " wasn't founded");
+            } else if (containsObject(action.payload, stateData)) {
+                alert("City already added to Favorite");
+                stateData = removeLoadingObject(action.city, stateData);
+            } else {
+                stateData = changeObject(action.payload, stateData);
+                fetch("http://localhost:3001/favourites", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(action.payload)
+                })
+            }
+            break;
+        case "":
+
+            break;
+        case "1":
+
+            break;
+        case "2":
+
+            break;
+        case "3":
+
+            break;
+
+
+
+
         case "FAVORITE_DATA_RESOLVE":
             console.log(action.payload.city);
-            if (action.payload.data["cod"] === "404") {
+            if (action.payload.data.cod === "404") {
                 console.log(action.payload);
-                alert("City not founded");
+                alert(action.payload.data["message"]);
                 stateData = removeLoadingObject(action.payload, stateData);
             } else if (containsObject(action.payload, stateData)) {
                 alert("City already added to Favorite");
@@ -16,53 +61,44 @@ export function reducer(state, action) {
             }
             else {
                 stateData = changeObject(action.payload, stateData);
-
-                const Http = new XMLHttpRequest();
-                const url = "http://localhost:3000/favourites";
-                const params = action.payload.data;
-                Http.open("POST", url, true);
-                Http.setRequestHeader('Content-Type', 'application/json');
-                Http.send(params);
-                Http.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                    }
-                }
+                window.localStorage.setItem("favorite", JSON.stringify(stateData));
             }
             break;
-        /*  WHEN USED? O_o
-            case "FAVORITE_DATA_ERROR":
-                alert(action.payload.data);
-                stateData = removeObject(action.payload, stateData);
-                break;
-        */
+        case "FAVORITE_DATA_UNRESOLVE":
+            alert("Load error");
+            stateData = stateData.filter(city => city.city !== action.payload.city);
+            break;
+        case "FAVORITE_DATA_ERROR":
+            alert(action.payload.data);
+            stateData = removeObject(action.payload, stateData);
+            break;
         case "FAVORITE_REMOVE":
             stateData = stateData.filter(city => city.city !== action.payload);
-
-            const Http = new XMLHttpRequest();
-            const url = "http://localhost:3000/favourites?city=" + action.payload;
-            Http.open("DELETE", url);
-            Http.send();
-            Http.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                }
-            }
+            window.localStorage.setItem("favorite", JSON.stringify(stateData));
+            break;
+        case "FAVORITE_DATA_REFRESHED":
+            changeObject(action.payload, stateData);
+            window.localStorage.setItem("favorite", JSON.stringify(stateData));
+            break;
+        case "FAVORITE_DATA_UNREFRESHED":
+            alert("City " + action.payload.city + " wasn't updated due to problem with network")
             break;
         default:
             break;
     }
+
     return stateData;
 }
 
 function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i].city === obj.data["CityName"] && list[i].loading === false) {
+        if (list[i].CityName === obj.CityName && Object.keys(list[i]).length !== 1) {
             return true;
         }
     }
     return false;
 }
-/*
 function removeObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -72,11 +108,10 @@ function removeObject(obj, list) {
     }
     return list;
 }
-*/
 function removeLoadingObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i].city === obj.city && list[i].loading === true) {
+        if (list[i].CityName === obj && Object.keys(list[i]).length === 1) {
             list.splice(i, 1);
         }
     }
@@ -85,8 +120,8 @@ function removeLoadingObject(obj, list) {
 function changeObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i].city === obj.city) {
-            obj.city = obj.data["CityName"];
+        if (list[i].CityName === obj.CityName) {
+            obj.city = obj.data.CityName;
             list[i] = obj;
         }
     }

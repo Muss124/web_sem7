@@ -1,5 +1,5 @@
 import React from 'react';
-import { FavoriteSearch } from '../Components/FavoriteSearch'
+import { FavoriteSearch } from '../Components/FavoriteSearch/js/FavoriteSearch'
 import { shallow } from '../enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 

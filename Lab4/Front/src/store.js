@@ -7,24 +7,21 @@ const myMiddle = (store) => (next) => (action) => {
     next(action);
 };
 
-function getdata() {
-    const Http = new XMLHttpRequest();
-    const url = "http://localhost:3000/favourites";
-    var data = [];
-
-    Http.open("GET", url);
-    Http.send();
-
-    Http.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            data = Http.responseText
-            return data;
-        }
-    }
-}
-
 export default createStore(
     reducer,
     [],
     applyMiddleware(myMiddle, thunk)
 );
+
+/*
+new Promise((resolve, reject) => {
+            var request = new XMLHttpRequest()
+            request.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q='.concat(city, "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric"), true)
+            request.onload = function () {
+                var data = JSON.parse(this.response)
+                resolve(data)
+            }
+            request.onerror = () => reject("Load error")
+            request.send()
+        })
+*/

@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing render WeatherData Correct input 1`] = `
+exports[`Testing render WeatherData Favorite weather 1`] = `
 <div
-  class="WeatherData"
+  className="WeatherData"
 >
   <div
-    class="WeatherTop"
+    className="WeatherTop"
   >
     <h2>
-      Moscow
+      Kiev
     </h2>
     <img
       alt=""
-      src="http://openweathermap.org/img/wn/10n.png"
+      src="http://openweathermap.org/img/wn/09n.png"
     />
     <h1>
-      1.45
+      2.98
        ℃
     </h1>
     <button
-      class="btn btn-secondary"
+      className="btn btn-secondary"
       onClick={[Function]}
       type="submit"
     >
@@ -27,90 +27,200 @@ exports[`Testing render WeatherData Correct input 1`] = `
     </button>
   </div>
   <div
-    class="WeatherMain"
+    className="WeatherMain"
   >
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Weather
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        heavy intensity rain
+        light intensity drizzle
       </div>
     </div>
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Humidity (%)
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        100
+        93
       </div>
     </div>
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Pressure (hPa)
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        1012
+        1014
       </div>
     </div>
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Wind speed (meter/sec)
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        3
+        4
       </div>
     </div>
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Longitude 
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        37.62
+        30.52
       </div>
     </div>
     <div
-      class="WeatherMainEl"
+      className="WeatherMainEl"
     >
       <div
-        class="WeatherParam"
+        className="WeatherParam"
       >
         Latitude
       </div>
       <div
-        class="WeatherValue"
+        className="WeatherValue"
       >
-        55.75
+        50.43
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing render WeatherData Header weather 1`] = `
+<div
+  className="WeatherData"
+>
+  <div
+    className="WeatherTop"
+  >
+    <h2>
+      Kiev
+    </h2>
+    <img
+      alt=""
+      src="http://openweathermap.org/img/wn/09n.png"
+    />
+    <h1>
+      2.98
+       ℃
+    </h1>
+  </div>
+  <div
+    className="WeatherMain"
+  >
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Weather
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        light intensity drizzle
+      </div>
+    </div>
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Humidity (%)
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        93
+      </div>
+    </div>
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Pressure (hPa)
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        1014
+      </div>
+    </div>
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Wind speed (meter/sec)
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        4
+      </div>
+    </div>
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Longitude 
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        30.52
+      </div>
+    </div>
+    <div
+      className="WeatherMainEl"
+    >
+      <div
+        className="WeatherParam"
+      >
+        Latitude
+      </div>
+      <div
+        className="WeatherValue"
+      >
+        50.43
       </div>
     </div>
   </div>

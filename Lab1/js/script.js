@@ -2,7 +2,7 @@ function render(data) {
     var htmlWeather = document.getElementById("WeatherInfo")
     var htmlCity = document.getElementById("City")
     if (data['cod'] === 200) {
-        //console.log("yes")
+        //console.log("yes");
         htmlCity.textContent = data["name"]
         var template = "{{~it.weather :value:index}}<li>{{=value.parametr}} - {{=value.value}}</li>{{~}}"
         var json = {
@@ -16,6 +16,7 @@ function render(data) {
         }
         var tempFn = doT.template(template)
         htmlWeather.innerHTML = tempFn(json)
+        //console.log(htmlWeather.innerHTML);
     } else {
         //console.log("no")
         htmlCity.textContent = data["message"]

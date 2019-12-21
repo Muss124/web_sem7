@@ -2,52 +2,22 @@
 
 exports[`Testing render FavoriteItem Correct data 1`] = `
 <div
-  class="FavoriteItem"
+  className="FavoriteItem"
 >
   <WeatherData
+    isMain={false}
     value={
       Object {
-        "base": "stations",
-        "clouds": Object {
-          "all": 30,
-        },
-        "cod": 200,
-        "coord": Object {
-          "lat": 50.43,
-          "lon": 30.52,
-        },
-        "dt": 1576604944,
-        "id": 703448,
-        "main": Object {
-          "feels_like": 2.93,
-          "humidity": 87,
-          "pressure": 1017,
-          "temp": 6.29,
-          "temp_max": 7.78,
-          "temp_min": 4,
-        },
-        "name": "Kiev",
-        "sys": Object {
-          "country": "UA",
-          "id": 8903,
-          "sunrise": 1576561989,
-          "sunset": 1576590872,
-          "type": 1,
-        },
-        "timezone": 7200,
-        "visibility": 10000,
-        "weather": Array [
-          Object {
-            "description": "scattered clouds",
-            "icon": "03n",
-            "id": 802,
-            "main": "Clouds",
-          },
-        ],
-        "wind": Object {
-          "deg": 230,
-          "speed": 3,
-        },
+        "CityName": "Kiev",
+        "Cod": 200,
+        "Humidity": 93,
+        "Icon": "09n",
+        "Latitude": 50.43,
+        "Longitude": 30.52,
+        "Pressure": 1014,
+        "Temperature": 2.98,
+        "Weather": "light intensity drizzle",
+        "Wind": 4,
       }
     }
   />
@@ -55,17 +25,12 @@ exports[`Testing render FavoriteItem Correct data 1`] = `
 `;
 
 exports[`Testing render FavoriteItem Loading 1`] = `
-<div>
-  TEST LOADING CITY
-  <div
-    class="spinner-border text-danger"
-    role="status"
-  >
-    <span
-      class="sr-only"
-    >
-      Loading...
-    </span>
-  </div>
+<div
+  className="FavoriteItem"
+>
+  <WeatherData
+    isMain={false}
+    value={Object {}}
+  />
 </div>
 `;

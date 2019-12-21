@@ -1,21 +1,21 @@
 import React from 'react';
-import { FavoriteSearch } from "./FavoriteSearch.js"
+import { FavoriteSearch } from "../../FavoriteSearch/js/FavoriteSearch"
 import { connect } from 'react-redux'
-import { FavoriteItem } from "./FavoriteItem.js"
+import { FavoriteItem } from "../../FavoriteItem/js/FavoriteItem"
+import '../css/Favorite.css'
 
 class Favorite extends React.Component {
-    
     render() {
         return (
             <div>
                 <FavoriteSearch />
-                <div class="FavoriteContainer" >
+                <div className="FavoriteContainer" >
                     {
                         this.props.data.map((favCity, i = 0) => {
                             i++;
                             return ([
 
-                                <FavoriteItem value={favCity} />
+                                <FavoriteItem value={favCity} key={i}/>
 
                             ])
                         })

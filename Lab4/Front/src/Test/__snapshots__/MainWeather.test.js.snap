@@ -2,11 +2,11 @@
 
 exports[`Testing render MainWeather Empty 1`] = `
 <div
-  class="spinner-border text-danger"
+  className="spinner-border text-danger"
   role="status"
 >
   <span
-    class="sr-only"
+    className="sr-only"
   >
     Loading...
   </span>
@@ -15,11 +15,11 @@ exports[`Testing render MainWeather Empty 1`] = `
 
 exports[`Testing render MainWeather Loading 1`] = `
 <div
-  class="spinner-border text-danger"
+  className="spinner-border text-danger"
   role="status"
 >
   <span
-    class="sr-only"
+    className="sr-only"
   >
     Loading...
   </span>
@@ -36,65 +36,32 @@ exports[`Testing render MainWeather No access 1`] = `
 
 exports[`Testing render MainWeather Success 1`] = `
 <div
-  class="UpperWeather"
+  className="UpperWeather"
 >
   <button
-    class="btn btn-secondary"
+    className="btn btn-secondary"
     onClick={[Function]}
     type="button"
   >
     Refresh geolocation
   </button>
   <div
-    class="TopCityWeather"
+    className="TopCityWeather"
   >
     <WeatherData
+      isMain={true}
       value={
         Object {
-          "base": "stations",
-          "clouds": Object {
-            "all": 90,
-          },
-          "cod": 200,
-          "coord": Object {
-            "lat": 55.75,
-            "lon": 37.62,
-          },
-          "dt": 1576589135,
-          "id": 524901,
-          "main": Object {
-            "feels_like": -2.41,
-            "humidity": 100,
-            "pressure": 1012,
-            "temp": 1.45,
-            "temp_max": 2.78,
-            "temp_min": 0.56,
-          },
-          "name": "Moscow",
-          "rain": Object {
-            "1h": 8.89,
-          },
-          "sys": Object {
-            "country": "RU",
-            "id": 9029,
-            "sunrise": 1576562073,
-            "sunset": 1576587379,
-            "type": 1,
-          },
-          "timezone": 10800,
-          "visibility": 8000,
-          "weather": Array [
-            Object {
-              "description": "heavy intensity rain",
-              "icon": "10n",
-              "id": 502,
-              "main": "Rain",
-            },
-          ],
-          "wind": Object {
-            "deg": 210,
-            "speed": 3,
-          },
+          "CityName": "Kiev",
+          "Cod": 200,
+          "Humidity": 93,
+          "Icon": "09n",
+          "Latitude": 50.43,
+          "Longitude": 30.52,
+          "Pressure": 1014,
+          "Temperature": 2.98,
+          "Weather": "light intensity drizzle",
+          "Wind": 4,
         }
       }
     />
