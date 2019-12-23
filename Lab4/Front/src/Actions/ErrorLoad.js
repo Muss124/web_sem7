@@ -1,6 +1,7 @@
-export default function (data) {
+export default function (data, err) {
     return {
         type: "ERROR_LOAD",
-        payload: data
+        payload: data,
+        err : err
     };
 }

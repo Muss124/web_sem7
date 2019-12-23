@@ -1,5 +1,3 @@
-import { json } from "body-parser";
-
 export function reducer(state, action) {
     var stateData = [...state];
     switch (action.type) {
@@ -9,12 +7,19 @@ export function reducer(state, action) {
             break;
         case "ERROR_LOAD":
             alert("Load error");
+            console.log(action.err);
+            stateData = removeLoadingObject(action.payload, stateData);
+            break;
+        case "ERROR_REQUEST":
+            alert("Request error");
+            console.log(action.data);
             stateData = removeLoadingObject(action.payload, stateData);
             break;
         case "FAVORITE_ADD":
             stateData.push(action.payload);
             break;
         case "FAVORITE_ADD_OK":
+            console.log("FAVORITE_ADD_OK");
             //тут вся обработка реза, сюда и с 404 приходит
             if (action.payload.cod === "404") {
                 alert("City " + action.city + " wasn't founded");
@@ -33,8 +38,8 @@ export function reducer(state, action) {
                 })
             }
             break;
-        case "":
-
+        case "TEST":
+            console.log("TEST DISPATCH");
             break;
         case "1":
 

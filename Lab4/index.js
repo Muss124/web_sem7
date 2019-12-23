@@ -49,13 +49,15 @@ app.get('/index.html', (req, res) => {
 // get weather by city name (/weather?city=Moscow)
 app.get('/weather', (req, res) => {
 	var city = req.query.city;
+	console.log("get weather by city name - " + city);
 	var que = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
 	fetch(que)
 		.then(response => response.json())
+		.then(res => console.log(res))
 		.then(data => {
-			res.send(data)
+			res.status(200).send(data);
 		})
-		.catch(err => console.log("Fetch error" + err));
+		.catch(err => console.log("Fetch error " + err));
 });
 
 
@@ -64,13 +66,14 @@ app.get('/weather', (req, res) => {
 app.get('/weather/coordinates', (req, res) => {
 	var lat = req.query.lat;
 	var long = req.query.long;
+	console.log("get weather by coordinates - " + lat + " " + long);
 	var que = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
 	fetch(que)
 		.then(response => response.json())
 		.then(data => {
 			res.send(data)
 		})
-		.catch(err => console.log("Fetch error" + err));
+		.catch(err => console.log("Fetch error " + err));
 });
 
 
