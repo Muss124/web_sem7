@@ -1,6 +1,7 @@
 var assert = chai.assert;
 
 describe("Check getweather()", function () {
+
     before(function () {
         this.srv = sinon.createFakeServer();
         this.srv.respondImmediately = true;
@@ -11,69 +12,87 @@ describe("Check getweather()", function () {
     });
 
 
-
     it("Empty", function () {
         var url = "http://api.openweathermap.org/data/2.5/weather?q=&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
-        var response = [400, {}, JSON.stringify({ "cod": "400", "message": "Nothing to geocode" })];;
+        var response = [400, {}, JSON.stringify({ "cod": "400", "message": "Nothing to geocode" })];
         this.srv.respondWith("GET", url, response);
-        getWeather("").then(res => assert.equal(res["message"], "Nothing to geocode"))
+        return getWeather("")
+            .then(res => assert.equal(res["message"], "Nothing to geocode"))
+            .catch(err => console.log(err));
     });
 
     it("Non existing city", function () {
         var url = "http://api.openweathermap.org/data/2.5/weather?q=qwerty&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
         var response = [400, {}, JSON.stringify({ "cod": "404", "message": "city not found" })];
         this.srv.respondWith("GET", url, response);
-        getWeather("qwerty").then(res => assert.equal(res["message"], "Nothing to geocode"))
+        return getWeather("qwerty")
+            .then(res => assert.equal(res["message"], "city not found"))
+            .catch(err => assert.errorData);
     });
 });
 
 
-
 describe("Check form submit", function () {
 
-    before(function () {
+    beforeEach(function () {
         this.srv = sinon.createFakeServer();
         this.srv.respondImmediately = true;
+        this.getWeather = window.getWeather;
     });
 
-    after(function () {
+    afterEach(function () {
         this.srv.restore();
+        window.getWeather = this.getWeather
     });
 
+
+    function newPromiseMock(val) {
+        return function () {
+            return {
+                resolved: val,
+
+                then: function (f) {
+                    return {
+                        resolved: f(this.resolved),
+                        then: this.then
+                    }
+                }
+            }
+        };
+    }
 
     it("Empty", function () {
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
-        var response = [404, {}, JSON.stringify({ "cod": "400", "message": "Nothing to geocode" })];
-        this.srv.respondWith("GET", url, response);
+
+        window.getWeather = newPromiseMock({
+            "cod": "400", "message": "Nothing to geocode"
+        });
+
         document.getElementById("_citysearch").value = "";
         document.getElementById("searchbutton").click();
         var Title = document.getElementById("City").innerHTML;
         var res = document.getElementById("WeatherInfo").innerHTML;
-        setTimeout(() => {
-            assert.equal(Title, "city not found");
-            assert.equal(res, "");
-        }, 3000);
+        assert.equal(Title, "Nothing to geocode");
+        assert.equal(res, "");
+
     });
 
 
     it("Incorrect city name", function () {
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=Moscowasdsadasd&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
-        var response = [404, {}, JSON.stringify({ "cod": "404", "message": "city not found!!!!!" })];
-        this.srv.respondWith("GET", url, response);
+
+        window.getWeather = newPromiseMock({ "cod": "404", "message": "city not found" });
+
         document.getElementById("_citysearch").value = "Moscowasdsadasd";
         document.getElementById("searchbutton").click();
         var Title = document.getElementById("City").innerHTML;
         var res = document.getElementById("WeatherInfo").innerHTML;
-        setTimeout(() => {
-            assert.equal(Title, "city not found");
-            assert.equal(res, "");
-        }, 3000);
+        assert.equal(Title, "city not found");
+        assert.equal(res, "");
     });
 
 
     it("Correct city name", function () {
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=Kiev&APPID=f8e5ebb3f762d1a58aaff7f643d7410b&units=metric";
-        var testData = {
+
+        window.getWeather = newPromiseMock({
             "weather": [
                 { description: "Normal weather" }
             ],
@@ -88,20 +107,16 @@ describe("Check form submit", function () {
             "wind": {
                 "speed": 8
             }
-        };
-        var response = [200, {}, JSON.stringify(testData)];
-        this.srv.respondWith("GET", url, response);
+        });
+
         document.getElementById("_citysearch").value = "Kiev";
         document.getElementById("searchbutton").click();
         var Title = document.getElementById("City").textContent;
         var res = document.getElementById("WeatherInfo").innerHTML;
-        setTimeout(() => {
-            assert.equal(Title, "TEST CITY");
-            assert.notEqual(res, "");
-        }, 3000);
+        assert.equal(Title, "TEST CITY");
+        assert.notEqual(res, "");
     });
 });
-
 describe("Check render", function () {
     var testData = {
         "weather": [
@@ -133,10 +148,12 @@ describe("Check render", function () {
         var title = document.getElementById("City").outerHTML;
         assert.equal(testTitle, title);
         assert.equal(testRes, res);
-    })
+    });
     it("Error info weather", function () {
         render(errorData);
-        var res = document.getElementById("WeatherInfo").outerHTML;
+        var res =
+
+            document.getElementById("WeatherInfo").outerHTML;
         var title = document.getElementById("City").outerHTML;
         assert.equal(errorTitle, title);
         assert.equal(errorRes, res);
