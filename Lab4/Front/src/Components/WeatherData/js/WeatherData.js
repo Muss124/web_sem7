@@ -1,13 +1,14 @@
 import React from "react"
 import store from "../../../store"
 import "../css/WeatherData.css"
+import ServerDeleteCity from '../../../Actions/ServerDeleteCity'
 
 export class WeatherData extends React.Component {
 	render() {
 		var WeatherData = this.props.value;
-		console.log("here");
-		console.log(WeatherData);
-		console.log(this.props.isMain);
+		//console.log("here");
+		//console.log(WeatherData);
+		//console.log(this.props.isMain);
 		if (this.props.isMain) {
 			return (
 				<div className="WeatherData">
@@ -54,7 +55,8 @@ export class WeatherData extends React.Component {
 						<h1>{WeatherData.Temperature} &#8451;</h1>
 						<button type="submit" className="btn btn-secondary" onClick={() => {
 							console.log("REMOVE");
-							store.dispatch({ type: "FAVORITE_REMOVE", payload: WeatherData.CityName });
+							//store.dispatch({ type: "FAVORITE_REMOVE", payload: WeatherData.CityName });
+							store.dispatch(ServerDeleteCity(WeatherData.CityName));
 						}} >&#10006;</button>
 					</div>
 					<div className="WeatherMain">

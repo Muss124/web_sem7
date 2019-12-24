@@ -7,86 +7,37 @@ export function reducer(state, action) {
             break;
         case "ERROR_LOAD":
             alert("Load error");
-            console.log(action.err);
             stateData = removeLoadingObject(action.payload, stateData);
             break;
-        case "ERROR_REQUEST":
-            alert("Request error");
-            console.log(action.data);
-            stateData = removeLoadingObject(action.payload, stateData);
+        case "ERROR_DELETE":
+            alert("Delete error");
+            console.log(action.err);
             break;
         case "FAVORITE_ADD":
             stateData.push(action.payload);
             break;
+        case "FAVORITE_DELETE":
+            stateData = stateData.filter(city => city.CityName !== action.payload);
+            break;
         case "FAVORITE_ADD_OK":
             console.log("FAVORITE_ADD_OK");
-            //тут вся обработка реза, сюда и с 404 приходит
-            if (action.payload.cod === "404") {
-                alert("City " + action.city + " wasn't founded");
-            } else if (containsObject(action.payload, stateData)) {
-                alert("City already added to Favorite");
-                stateData = removeLoadingObject(action.city, stateData);
-            } else {
-                stateData = changeObject(action.payload, stateData);
-                fetch("http://localhost:3001/favourites", {
-                    method: "POST",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(action.payload)
-                })
-            }
+            stateData = changeObject(action.payload, stateData);
             break;
-        case "TEST":
-            console.log("TEST DISPATCH");
+        case "ERROR_SERVER_ADD":
+            alert("Adding to db error");
+            stateData = removeLoadingObject(action.payload, stateData);
             break;
-        case "1":
-
+        case "ERROR_REFRESH":
+            alert("Error while refreshing " + action.city + " info")
+            console.log(action.err);
             break;
-        case "2":
-
+        case "FAVORITE_REFRESH":
+            changeObject(action.data, stateData)
             break;
-        case "3":
-
-            break;
-
-
-
-
-        case "FAVORITE_DATA_RESOLVE":
-            console.log(action.payload.city);
-            if (action.payload.data.cod === "404") {
-                console.log(action.payload);
-                alert(action.payload.data["message"]);
-                stateData = removeLoadingObject(action.payload, stateData);
-            } else if (containsObject(action.payload, stateData)) {
-                alert("City already added to Favorite");
-                stateData = removeLoadingObject(action.payload, stateData);
-            }
-            else {
-                stateData = changeObject(action.payload, stateData);
-                window.localStorage.setItem("favorite", JSON.stringify(stateData));
-            }
-            break;
-        case "FAVORITE_DATA_UNRESOLVE":
-            alert("Load error");
-            stateData = stateData.filter(city => city.city !== action.payload.city);
-            break;
-        case "FAVORITE_DATA_ERROR":
-            alert(action.payload.data);
-            stateData = removeObject(action.payload, stateData);
-            break;
-        case "FAVORITE_REMOVE":
-            stateData = stateData.filter(city => city.city !== action.payload);
-            window.localStorage.setItem("favorite", JSON.stringify(stateData));
-            break;
-        case "FAVORITE_DATA_REFRESHED":
-            changeObject(action.payload, stateData);
-            window.localStorage.setItem("favorite", JSON.stringify(stateData));
-            break;
-        case "FAVORITE_DATA_UNREFRESHED":
-            alert("City " + action.payload.city + " wasn't updated due to problem with network")
+        case "ERROR_ADD":
+            alert("Adding " + action.city + " error");
+            console.log(action.err);
+            stateData = removeLoadingObject(action.city, stateData);
             break;
         default:
             break;
@@ -95,6 +46,7 @@ export function reducer(state, action) {
     return stateData;
 }
 
+/*
 function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -104,15 +56,17 @@ function containsObject(obj, list) {
     }
     return false;
 }
+
 function removeObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        if (list[i].city === obj.city) {
+        if (list[i].CityName === obj && Object.keys(list[i]).length !== 1) {
             list.splice(i, 1);
         }
     }
     return list;
 }
+*/
 function removeLoadingObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
@@ -126,7 +80,7 @@ function changeObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].CityName === obj.CityName) {
-            obj.city = obj.data.CityName;
+            obj.city = obj.CityName;
             list[i] = obj;
         }
     }

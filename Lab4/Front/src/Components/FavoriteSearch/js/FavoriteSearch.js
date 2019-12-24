@@ -1,8 +1,8 @@
 import React from "react"
 import store from "../../../store"
-import { itemsFetchDataRef } from "../../../Actions/reques"
 import '../css/FavoriteSearch.css'
 import FetchCityData from '../../../Actions/FetchCityData'
+import RefreshCity from "../../../Actions/RefreshCity"
 
 export class FavoriteSearch extends React.Component {
     constructor(props) {
@@ -21,6 +21,7 @@ export class FavoriteSearch extends React.Component {
     }
 
     addGeo(value) {
+        console.log("form submited");
         store.dispatch({ type: "FAVORITE_ADD", payload: { CityName : value } });
         store.dispatch(FetchCityData(value));
     }
@@ -40,7 +41,7 @@ export class FavoriteSearch extends React.Component {
                         var refData = store.getState();
                         refData.forEach(el => {
                             console.log(el);
-                            store.dispatch(itemsFetchDataRef(el.city));
+                            store.dispatch(RefreshCity(el.CityName));
                         });
                     }} >&#8634;</button>
                 </div>
