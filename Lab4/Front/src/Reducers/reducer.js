@@ -21,7 +21,7 @@ export function reducer(state, action) {
             break;
         case "FAVORITE_ADD_OK":
             console.log("FAVORITE_ADD_OK");
-            stateData = changeObject(action.payload, stateData);
+            stateData = changeObject(action.payload, stateData, action.city);
             break;
         case "ERROR_SERVER_ADD":
             alert("Adding to db error");
@@ -32,7 +32,7 @@ export function reducer(state, action) {
             console.log(action.err);
             break;
         case "FAVORITE_REFRESH":
-            changeObject(action.data, stateData)
+            refreshObject(action.data, stateData)
             break;
         case "ERROR_ADD":
             alert("Adding " + action.city + " error");
@@ -76,11 +76,20 @@ function removeLoadingObject(obj, list) {
     }
     return list;
 }
-function changeObject(obj, list) {
+function changeObject(obj, list, city) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].CityName === city) {
+            list[i] = obj;
+        }
+    }
+    return list;
+}
+
+function refreshObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].CityName === obj.CityName) {
-            obj.city = obj.CityName;
             list[i] = obj;
         }
     }

@@ -5,7 +5,7 @@ import '../css/FavoriteItem.css'
 
 export class FavoriteItem extends React.Component {
 	render() {
-		if (Object.keys(this.props.value).length !== 11) {
+		if (Object.keys(this.props.value).length === 1) {
 			return (
 				<div>
 					{this.props.value.CityName}

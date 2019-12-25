@@ -58,6 +58,6 @@ export class MainWeather extends React.Component {
 		})
 			.then((res) => res.json())
 			.then((res) => this.setState({ loading: false, success: true, data: transform(res) }))
-			.catch((err) => { throw err; })
+			.catch(() => this.setState({ loading: false, success: false, access: false }))
 	}
 }
