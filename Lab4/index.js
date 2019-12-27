@@ -23,25 +23,6 @@ con.connect(function (err) {
 	if (err) throw err;
 	console.log("Connected!");
 });
-/*
-app.get('/asdasdasdsad', (req, res) => {
-	//res.send('An alligator approaches!');
-	var sql = "SELECT * FROM `favorite`";
-	con.query(sql, function (err, result) {
-		if (err) throw err;
-		console.log(result[0].CityName);
-		res.send('An alligator approaches!');
-	});
-});
-*/
-
-// main page
-app.get('/index.html', (req, res) => {
-	console.log(req.query);
-	res.sendFile(__dirname + '/Front/index.html');
-});
-
-
 
 // get weather by city name (/weather?city=Moscow)
 app.get('/weather', (req, res) => {
@@ -53,7 +34,7 @@ app.get('/weather', (req, res) => {
 		.then(response => {
 			res.status(response.cod).send(response)
 		})
-		.catch(err => console.log("Fetch error " + err));
+		.catch(err => {res.sendStatus(500); console.log("Fetch error " + err);});
 });
 
 
@@ -69,7 +50,7 @@ app.get('/weather/coordinates', (req, res) => {
 		.then(data => {
 			res.status(data.cod).send(data)
 		})
-		.catch(err => console.log("Fetch error " + err));
+		.catch(err => {res.sendStatus(500); console.log("Fetch error " + err);});
 });
 
 

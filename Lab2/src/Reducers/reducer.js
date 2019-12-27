@@ -50,9 +50,9 @@ export function reducer(state, action) {
 function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
-        console.log(list[i].city === obj.city )
-        console.log(Object.keys(list[i].data).length)
-        if (list[i].city === obj.city && Object.keys(list[i].data).length !== 0) {
+        console.log(obj);
+        console.log(Object.keys(list[i].data).length);
+        if (list[i].city === obj.data.CityName && Object.keys(list[i].data).length !== 0) {
             return true;
         }
     }
@@ -70,6 +70,8 @@ function removeObject(obj, list) {
 function removeLoadingObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
+        console.log(list[i].city);
+        console.log(obj.city);
         if (list[i].city === obj.city && Object.keys(list[i].data).length === 0) {
             list.splice(i, 1);
         }
