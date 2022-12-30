@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "mocha-headless-chrome": "^2.0.3",
     "sinon": "^7.5.0",
     "sion": "0.0.1"
